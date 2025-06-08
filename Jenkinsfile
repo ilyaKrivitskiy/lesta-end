@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'me1vin/lesta-end'
-        DOCKER_TAG = 'latest'
+        DOCKER_TAG = '0.0.1'
         REGISTRY_CREDENTIALS = 'dockerhub'
     }
     stages {
@@ -14,7 +14,9 @@ pipeline {
         }
         stage('Build'){
             steps {
-                sh "docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% ."
+                script {
+                    dockerImage = docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                }
             }
         }
         stage('Test/Lint'){
