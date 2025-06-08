@@ -1,0 +1,38 @@
+services:
+  web:
+    build: .
+    environment:
+      DB_URL: postgresql://${DB_USER}:${DB_PASS}@db:${DB_PORT}/${DB_NAME}
+    restart: always
+    ports:
+      - "${FLASK_APP_PORT}:5000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16.1-alpine3.19
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    expose:
+      - ${DB_PORT}
+    ports:
+      - "${DB_PORT}:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pg_data:
