@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    triggers {
+        githubPush()
+    }
+
     environment {
         DOCKER_IMAGE = 'me1vin/lesta-end'
         DOCKER_TAG = '0.0.1'
@@ -26,7 +31,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pip install flake8'
+                sh 'pip3 install flake8'
                 sh 'flake8 routes.py models.py'
             }
         }
