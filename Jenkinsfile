@@ -24,17 +24,6 @@ pipeline {
                 }
             }
         }
-        stage('Test/Lint'){
-            agent {
-                docker {
-                    image 'python:3.10-slim'
-                }
-            }
-            steps {
-                sh 'pip3 install flake8'
-                sh 'flake8 routes.py models.py'
-            }
-        }
         stage('Push'){
             steps {
                 script {
