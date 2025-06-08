@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build'){
             steps {
-                bat "docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% ."
+                sh "docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% ."
             }
         }
         stage('Test/Lint'){
