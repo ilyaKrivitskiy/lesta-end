@@ -21,8 +21,12 @@ pipeline {
         }
         stage('Test/Lint'){
             steps {
-                sh 'pip install flake8'
-                sh 'flake8 routes.py'
+                script {
+                    dockerImage.inside {
+                        sh 'pip install flake8'
+                        sh 'flake8 routes.py models.py'
+                    }
+                }
             }
         }
         stage('Push'){
