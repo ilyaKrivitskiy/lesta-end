@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Checkout'){
             steps {
-                git 'https://github.com/ilyaKrivitskiy/lesta-end.git'
+                git url: 'https://github.com/ilyaKrivitskiy/lesta-end.git',
+                    credentialsId: 'github-pat'
             }
         }
         stage('Build'){
