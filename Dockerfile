@@ -2,6 +2,7 @@ FROM python:3.10-slim as builder
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install --upgrade setuptools wheel
+RUN apt-get -y update && apt-get -y install curl
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
 RUN rm requirements.txt
