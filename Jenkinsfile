@@ -44,5 +44,10 @@ pipeline {
                 }
             }
         }
+        stage('Archive Artifact') {
+            steps {
+                archiveArtifacts artifacts: 'docker-compose.yaml', fingerprint: true
+            }
+        }
     }
 }
