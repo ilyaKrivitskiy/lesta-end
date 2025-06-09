@@ -26,8 +26,7 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh 'sudo apt install flake8'
-                sh 'flake8 app/routes.py app/models.py'
+                sh 'python3 -m flake8 app/models.py app/routes.py'
             }
         }
         stage('Push'){
