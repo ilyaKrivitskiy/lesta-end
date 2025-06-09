@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh 'python3 -m flake8 app/models.py app/routes.py'
+                sh 'python -m flake8 app/models.py app/routes.py'
             }
         }
         stage('Push'){
