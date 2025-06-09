@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: me1vin/lesta-end:0.0.1
     environment:
       DB_URL: postgresql://${DB_USER}:${DB_PASS}@db:${DB_PORT}/${DB_NAME}
       FLASK_APP: routes.py
