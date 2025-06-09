@@ -3,6 +3,7 @@ services:
     build: .
     environment:
       DB_URL: postgresql://${DB_USER}:${DB_PASS}@db:${DB_PORT}/${DB_NAME}
+      FLASK_APP: routes.py
     restart: always
     ports:
       - "${FLASK_APP_PORT}:5000"

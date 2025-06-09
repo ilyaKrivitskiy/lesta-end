@@ -10,5 +10,7 @@ FROM builder
 WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY --from=builder /app/* .
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 EXPOSE 5000
-CMD ["python","routes.py"]
+ENTRYPOINT ["/entrypoint.sh"]
