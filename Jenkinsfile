@@ -25,13 +25,8 @@ pipeline {
             }
         }
         stage('Lint') {
-            agent {
-                docker {
-                    image 'python:3.10'
-                }
-            }
             steps {
-                sh 'python3 -m flake8 app/models.py app/routes.py'
+                sh 'python -m flake8 app/models.py app/routes.py'
             }
         }
         stage('Push'){
