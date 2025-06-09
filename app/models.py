@@ -3,6 +3,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Score(db.Model):
     __tablename__ = 'scores'
 

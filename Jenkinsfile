@@ -24,6 +24,11 @@ pipeline {
                 }
             }
         }
+        stage('Lint') {
+            steps {
+                sh 'flake8 app/routes.py app/models.py'
+            }
+        }
         stage('Push'){
             steps {
                 script {
