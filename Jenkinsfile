@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout'){
             steps {
                 git url: 'https://github.com/ilyaKrivitskiy/lesta-end.git',
-                    credentialsId: 'github-pat'
+                    credentialsId: 'github-user'
             }
         }
         stage('Build'){
