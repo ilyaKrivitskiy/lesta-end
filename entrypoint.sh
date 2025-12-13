@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#export env value
+
 echo "Check migrations..."
 
 if [ ! -d "migrations" ]; then
